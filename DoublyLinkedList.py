@@ -28,6 +28,7 @@ class DoublyLinkedList:
     def prepend(self, value):
         if self.head is None:
             self.head = Node(value, None, None)
+            self.tail = self.head
         else:
             self.head = Node(value, self.head, None)
             self.head.next.prev = self.head
@@ -35,11 +36,12 @@ class DoublyLinkedList:
     def append(self, value):
         if self.head is None:
             self.head = Node(value, None, None)
+            self.tail = self.head
+
         else:
-            curr = self.head
-            while curr.next is not None:
-                curr = curr.next
-            curr.next = Node(value, None, curr)
+            node = Node(value, None, self.tail)
+            self.tail.next = node
+            self.tail = node
 
     def set_head(self, index):
         curr = self.head
@@ -49,6 +51,7 @@ class DoublyLinkedList:
             curr = curr.next
         curr.prev = None
         self.head = curr
+        return True
 
     def access(self, index):
         if self.head is None:
@@ -58,7 +61,10 @@ class DoublyLinkedList:
             if curr is None:
                 return False
             curr = curr.next
-        return curr.value
+        if curr is None:
+            return False
+        else:
+            return curr.value
 
     def insert(self, index, value):
         if self.head is None and index > 0:
@@ -73,11 +79,20 @@ class DoublyLinkedList:
             if curr is None:
                 return False
             curr = curr.next
-        curr.prev.next = Node(value, curr, curr.prev)
-        curr.prev = curr.prev.next
+
+        if curr is None:
+            node = Node(value, None, self.tail)
+            self.tail.next = node
+            self.tail = node
+        else:
+            curr.prev.next = Node(value, curr, curr.prev)
+            curr.prev = curr.prev.next
         return True
 
     def remove(self, index):
+        if self.head is None:
+            return False
+
         if index == 0:
             if self.head is not None:
                 self.head = self.head.next
@@ -94,10 +109,14 @@ class DoublyLinkedList:
 
         if curr is None:
             return False
+        else:
+            if curr.next is not None:
+                curr.prev.next = curr.next
+                curr.next.prev = curr.prev
 
-        curr.prev.next = curr.next
-        curr.next.prev = curr.prev
-        return True
+                if curr == self.tail:
+                    self.tail = curr.prev
+            return True
 
     def print(self):
         if self.head is None:
