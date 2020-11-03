@@ -29,12 +29,10 @@ class BinaryTree:
 
             # Left 자식 조회
             if left < len(self.array):
-                print(left, right, 'left')
                 recursive(left)
 
             # Right 자식 조회
             if right < len(self.array):
-                print(left, right, 'right')
                 recursive(right)
 
         s = '['
@@ -119,19 +117,3 @@ print(tree.dfs(11))
 
 print(tree.bfs(6))
 print(tree.bfs(17))
-
-
-def a(s):
-    print(s)
-
-
-def b(s):
-    print(s)
-
-
-def c(s):
-    a(s)
-    b(s)
-
-
-c(1)
