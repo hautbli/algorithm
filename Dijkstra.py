@@ -6,20 +6,28 @@ def dijkstra(start, graph):
     heap = []
     distances = [float('inf')] * n
 
-    heapq.heappush(heap, (0, start))
+    def push(data):
+        heapq.heappush(heap, data)
 
-    print(heapq.heappop(heap))
-    #
-    # for i in range(n):
-    #     heapq.heappush(heap, graph[i][0])
-    #     heapq.heappush(heap, graph[i][1])
+    def pop():
+        return heapq.heappop(heap)
 
-    heapq.heappush(heap, graph[0][0])
-    heapq.heappush(heap, graph[0][1])
+    push((0, start))
+    distances[start] = 0
 
-    print(heapq.heappop(heap))
-    print(heap)
+    while heap:
+        dist, node = pop()
 
+        if dist > distances[node]:
+            continue
+
+        for adj_node, adj_dist in graph[node]:
+            new_dist = dist + adj_dist
+            if new_dist < distances[adj_node]:
+                distances[adj_node] = new_dist
+                push((new_dist, adj_node))
+
+    return distances
 
 
 graph = [[(2, 5), (3, 2)],  # (인접노드, 가중치)
@@ -29,4 +37,3 @@ graph = [[(2, 5), (3, 2)],  # (인접노드, 가중치)
          [(2, 13), (1, 3)]]
 
 print(dijkstra(0, graph))
-
