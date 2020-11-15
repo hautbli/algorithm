@@ -14,5 +14,5 @@ print(solution([9, 7], 5))
 
 def solution2(arr, divisor):
     arr = [x for x in arr if x % divisor == 0];
-    arr.sort();
+    arr.sort()
     return arr if len(arr) != 0 else [-1];
