@@ -3,15 +3,17 @@ from itertools import permutations
 
 
 def solution(numbers):
-    answer = 0
-    numbers = list(map(str, numbers))
-    numbers = list(permutations(numbers, len(numbers)))
-    for n in numbers:
-        num = int(''.join(n))
-        if answer < num:
-            answer = num
+    answer = ''
+    for i in range(len(numbers)):
+        first = '0'
 
-    return str(answer)
+        for s in map(str, numbers):
+            if int(first) < int(s[0]):
+                first = s[0]
+        numbers.remove(int(s))
+        print(numbers)
+        answer += first
+    return answer
 
 
 print(solution([3, 30, 34, 5, 9]))
