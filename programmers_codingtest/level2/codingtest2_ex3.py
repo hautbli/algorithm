@@ -3,17 +3,16 @@ from itertools import permutations
 
 
 def solution(numbers):
-    answer = ''
-    for i in range(len(numbers)):
-        first = '0'
+    numbers = list(map(str, numbers))
+    numbers.sort(key=lambda x: x * 3, reverse=True)
+    print(numbers)
 
-        for s in map(str, numbers):
-            if int(first) < int(s[0]):
-                first = s[0]
-        numbers.remove(int(s))
-        print(numbers)
-        answer += first
-    return answer
+    return str(int(''.join(numbers)))
 
 
 print(solution([3, 30, 34, 5, 9]))
+
+s = ['28', '4', '8']
+s.sort(key=lambda x: x * 3, reverse=True)
+
+# 41, 4   // 441, 414
