@@ -3,6 +3,7 @@ from collections import deque
 
 
 def solution(prices):
+    # 시간 초과
     prices = deque(prices)
     answer = []
     for _ in range(len(prices)):
