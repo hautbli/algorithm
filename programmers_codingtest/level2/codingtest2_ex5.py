@@ -1,4 +1,4 @@
-# 주식 가격
+# 주식 가격 (스택/큐)
 from collections import deque
 
 
