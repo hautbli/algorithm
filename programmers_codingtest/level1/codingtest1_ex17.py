@@ -29,3 +29,6 @@ def solution2(s, n):
             s[i] = chr((ord(s[i]) - ord('a') + n) % 26 + ord('a'))
 
     return "".join(s)
+
+
+print(solution2('a B z', 4))
