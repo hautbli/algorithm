@@ -13,3 +13,15 @@ def solution(arr1, arr2):
 
 print(solution([[1, 2], [2, 3]], [[3, 4], [5, 6]]))
 
+
+import numpy as np
+
+
+def sumMatrix(A, B):
+    A = np.array(A)
+    B = np.array(B)
+    answer = A + B
+    return answer.tolist()
+
+
+print(sumMatrix([[1, 2], [2, 3]], [[3, 4], [5, 6]]))
