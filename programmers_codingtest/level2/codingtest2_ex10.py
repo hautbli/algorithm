@@ -11,3 +11,15 @@ def solution(citations):
 
 
 print(solution([5, 6, 7, 2, 2, 0, 0, 0, 0]))
+
+
+def solution2(citations):
+    citations = sorted(citations)
+    l = len(citations)
+    for i in range(l):
+        if citations[i] >= l - i:
+            return l - i
+    return 0
+
+
+print(solution2([5, 6, 7, 2, 2, 0, 0, 0, 0]))
