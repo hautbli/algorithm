@@ -1,3 +1,4 @@
+# linked list
 import sys
 
 input = sys.stdin.readline
